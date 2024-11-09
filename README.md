@@ -1,7 +1,22 @@
 # Custom Shell Project
 
 ## Overview
-
+Mini Project: Custom Shell Development in C
+    • Developed a Unix-like shell using C, implementing essential features to mimic standard shell behavior. 
+    • Dynamic Shell Prompt: Created a prompt displaying the current user, system name, and working directory, with support for relative paths. 
+    • Command Parsing: Implemented support for executing multiple commands using ; and &, handling random spaces and tabs in user input. 
+    • Directory Navigation: Designed the hop command for changing directories, supporting ~, ., .., and sequential arguments. 
+    • File Listing: Developed the reveal command to list files and directories with optional flags for detailed views and hidden files. 
+    • Command Logging: Implemented a log command to track and display the last 15 executed commands, with options to purge or execute logged commands. 
+    • System Command Execution: Enabled execution of system commands (e.g., vim, gedit) in both foreground and background modes. 
+    • Process Information: Created the proclore command to retrieve and display information about running processes. 
+    • File Searching: Developed the seek command to find files and directories, supporting flags for file type filtering and permissions checking. 
+    • I/O Redirection: Implemented support for input/output redirection using >, >>, and <, with appropriate error handling. 
+    • Pipes Support: Enabled command piping with error handling for invalid usage. 
+    • Signal Handling: Incorporated signal handling to manage background processes and user interruptions (Ctrl+C, Ctrl+Z). 
+    • Configuration File: Created a .myshrc file for user-defined aliases and functions to enhance shell usability. 
+    • Error Handling: Ensured robust error handling for both user-defined and system commands, preventing shell crashes. 
+    • Modular Code Structure: Followed best practices for modular programming, separating functionality into distinct C files with header files. 
 This project involves building a custom shell in C. The shell supports various functionalities, such as custom commands (`hop`, `reveal`, `log`, `proclore`, `seek`), handling background and foreground processes, executing system commands, and more. 
 
 ## Features Implemented
