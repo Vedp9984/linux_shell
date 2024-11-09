@@ -1,0 +1,25 @@
+reveall = reveal -l 
+alias reveala = reveal -a
+alias home = hop ~
+current_year=seek sem3
+roommate=seek sajiv
+roommate_temp=seek aryan
+gf=seek girlfriend
+song=seek song
+pictures=seek pictures
+bhai=seek bhai
+pro=proclore
+n=neonate -n 2
+
+mk_hop()
+{
+	mkdir "$1"
+	hop "$1" 
+}
+
+hop_seek()
+{
+    hop "$1" 
+    seek "$1" 
+}
+

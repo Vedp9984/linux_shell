@@ -1,0 +1,15 @@
+hop .
+hop src
+ls
+ls -l
+reveall
+reveal -a
+clear
+hello
+roommate
+seek bhai
+mk_hop new
+hop ..
+reveal
+hop new
+clear

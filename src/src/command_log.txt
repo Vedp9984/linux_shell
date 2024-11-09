@@ -1,0 +1,8 @@
+hop src
+hop ~ / src
+hop -
+hop ~/bin
+hop ~/src
+clear
+hop src
+hop ..
