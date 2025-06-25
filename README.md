@@ -1,152 +1,148 @@
-# Custom Shell Project (Course git repo link ; https://github.com/OSN-Monsoon-2024/mini-project-1-Vedp9984)
+#  Custom Shell - Mini Project 1
 
-## Overview
-Mini Project: Custom Shell Development in C 
-   # • Developed a Unix-like shell using C, implementing essential features to mimic standard shell behavior. 
-   # • Dynamic Shell Prompt: Created a prompt displaying the current user, system name, and working directory, with support for relative paths. 
-   # • Command Parsing: Implemented support for executing multiple commands using ; and &, handling random spaces and tabs in user input. 
-   # • Directory Navigation: Designed the hop command for changing directories, supporting ~, ., .., and sequential arguments. 
-   # • File Listing: Developed the reveal command to list files and directories with optional flags for detailed views and hidden files. 
-   # • Command Logging: Implemented a log command to track and display the last 15 executed commands, with options to purge or execute logged commands. 
-   #  • System Command Execution: Enabled execution of system commands (e.g., vim, gedit) in both foreground and background modes. 
-   # • Process Information: Created the proclore command to retrieve and display information about running processes. 
-   # • File Searching: Developed the seek command to find files and directories, supporting flags for file type filtering and permissions checking. 
-   # • I/O Redirection: Implemented support for input/output redirection using >, >>, and <, with appropriate error handling. 
-   # • Pipes Support: Enabled command piping with error handling for invalid usage. 
-   # • Signal Handling: Incorporated signal handling to manage background processes and user interruptions (Ctrl+C, Ctrl+Z). 
-   # • Configuration File: Created a .myshrc file for user-defined aliases and functions to enhance shell usability. 
-   # • Error Handling: Ensured robust error handling for both user-defined and system commands, preventing shell crashes. 
-   # • Modular Code Structure: Followed best practices for modular programming, separating functionality into distinct C files with header files. 
-This project involves building a custom shell in C. The shell supports various functionalities, such as custom commands (`hop`, `reveal`, `log`, `proclore`, `seek`), handling background and foreground processes, executing system commands, and more. 
+> GitHub Repository: [OSN-Monsoon-2024/mini-project-1-Vedp9984](https://github.com/OSN-Monsoon-2024/mini-project-1-Vedp9984)
 
-## Features Implemented
+##  Overview
 
-1. **Basic Command Execution**
+This project involves building a custom Unix-like shell in **C**, implementing essential shell features, user-defined commands, signal handling, job control, and more. The shell mimics standard shell behavior while extending functionality through custom commands like `hop`, `reveal`, `seek`, `proclore`, and others.
 
-   - The shell can execute standard system commands.
-   - Supports background execution of commands using `&`.
+---
 
-2. **Custom Commands**
+##  Key Features
 
-   - **`log`**: Handles logging of commands.
-   - **`hop`**: Custom command functionality.
-   - **`reveal`**: Reveals the content of files or directories.
-   - **`proclore`**: Provides details about processes.
-   - **`seek`**: Searches for files or directories based on specified flags.
+### 🔹 Dynamic Shell Prompt
+- Displays the **username**, **hostname**, and **current working directory**.
+- Supports **relative paths** using `~`.
 
-3. **Input Handling**
+### 🔹 Command Parsing
+- Executes **multiple commands** separated by `;` and `&`.
+- Ignores redundant **spaces and tabs** in user input.
+- Supports **quoted strings** in arguments.
 
-   - Handles multiple commands separated by `;`.
-   - Supports quoted strings in commands.
-   - Trims whitespace from commands and arguments.
+### 🔹 Custom Commands
 
-4. **Job Control**
+| Command     | Description |
+|-------------|-------------|
+| `hop`       | Changes directory with support for `~`, `.`, `..`, and sequential navigation. |
+| `reveal`    | Custom version of `ls`. Supports `-a`, `-l`, and default behaviors. |
+| `log`       | Tracks last 15 commands; supports purging and re-execution. |
+| `proclore`  | Displays process information for a given PID. |
+| `seek`      | Finds files and directories with extension/type and permission filtering. |
+| `activities`| Lists current shell-spawned processes in lexicographic order. |
+| `ping`      | Sends a signal to a given process ID. |
+| `fg`        | Moves a background process to the foreground. |
+| `bg`        | Resumes a stopped background process. |
+| `neonate`   | Monitors newly spawned processes at a given interval. |
+| `iMan`      | Fetches online man pages using sockets from `http://man.he.net`. |
 
-   - Handles background and foreground processes.
-   - Tracks job numbers for background processes.
+###  System Command Execution
+- Executes all system-level commands (`vim`, `gedit`, etc.).
+- Supports **foreground** and **background** execution using `&`.
 
-# . in reveal if we command only reveal defalt extension is set to reveal -a.
+###  Job Control
+- Tracks and manages **background jobs** with job numbers.
+- Supports `fg` and `bg` commands for control.
 
--a for displaying hidden files and -l for displaying all details of files. It works exactly like ls command in linux terminal.
-if there is any l in flag it will set to default as reveal -l
-reveal -laa=reveal -l
-reveal -alll =reveal -l
-reveal -aaa= reveal -a
-for reveal -a there should be only a in flag does not matter count
+###  File and Process Utilities
+- `reveal`: Mimics `ls` with `-a` and `-l` flags:
+  - If only `a` appears (regardless of count), `reveal -a` is assumed.
+  - If any `l` appears, defaults to `reveal -l`.
+  - Invalid combinations like `-laa`, `-alll` default to valid behavior.
+- `seek`: Can search files **with or without extensions**.
 
-# . For 'seek' command, files can be searched with or without extensions.
+###  I/O Redirection
+- Supports:
+  - `>`  → output redirection
+  - `>>` → append output
+  - `<`  → input redirection
+- Works **in combination** with pipes.
 
-## Part B
+### Pipes Support
+- Fully supports **command chaining** via pipes (`|`).
+- Works with **any number** of pipes and redirections.
 
-# #myshrc File
+###  Signal Handling
+- Handles key signals:
+  - `SIGINT` (`Ctrl+C`): Kills the foreground process.
+  - `SIGTSTP` (`Ctrl+Z`): Stops the foreground process and moves it to the background.
+  - `SIGQUIT` (`Ctrl+D`): Terminates all jobs and exits shell.
+- Custom `ping` command to send any signal (0-31) to a process.
 
-The myshrc file is a customized shell configuration file that includes useful aliases and functions to streamline the workflow and improve efficiency. It supports aliases and functions, including mk_hop and hop_seek.
+###  Activities Tracker
+- `activities`: Lists shell-spawned processes with PID and status (Running/Stopped).
+- Handles invalid processes gracefully (e.g., `sleeep &`).
 
-## I/O Redirection
+---
 
-The shell supports I/O redirection using >, >>, and < operators. It can redirect output to a file, append to a file, and read input from a file.
+##  Configuration File: `.myshrc`
 
-# #Pipes
+##  Configuration File: `.myshrc`
 
-The shell supports pipes, which allow passing information between commands. It can handle any number of pipes and runs commands sequentially from left to right.
+A startup configuration file for defining **aliases** and **functions**. Loaded at shell startup to allow user-specific customizations.
 
+Example entries:
+```bash
+alias ll='reveal -l'
+function mk_hop() {
+   hop $1 && mkdir -p $1;
+}
+```
 
-# Redirection with Pipes
+##  Additional Features
 
-The shell supports I/O redirection along with pipes, allowing for complex command sequences.
+### 🔹 Input Handling
+- Handles multiple commands separated by `;`
+- Supports quoted strings in commands
+- Trims whitespace from commands and arguments
 
-# Activities
+### 🔹 Command Behavior Details
 
-The shell provides an activities command that lists all the processes currently running that were spawned by the shell in lexicographic order. The list includes the command name, pid, and state (running or stopped) of each process.
-1. if an unknown activities like sleeep & then it will print that not valid one along with it store it in activities..
-whose statues we  it can give running 
+#### `reveal` Command
+- Default behavior: Acts like `reveal -a` when no flags are provided
+- Flag handling:
+  - If any `l` appears in flags: Defaults to `reveal -l` (e.g., `-laa`, `-alll`)
+  - If only `a` appears: Executes as `reveal -a` (e.g., `-aaa`)
+  - Shows hidden files with `-a` and detailed listing with `-l`
 
-## nenoate
+#### `seek` Command
+- Can search files with or without extensions
+- Supports flags for filtering by type and permissions
 
-1. The system has a **'/proc'** directory that contains information about running processes.
-2. The readdir function can be used to iterate through the /proc directory.
-3. The opendir and closedir functions can be used to open and close the /proc directory.
-4. The qsort function can be used to sort an array of integers.
-5. The fork function can be used to create a new process.
-6. The select function can be used to wait for input on the standard input file descriptor.
-7. The tcgetattr and tcsetattr functions can be used to manipulate the terminal attributes.
-   Usage
+### 🔹 I/O Redirection and Pipes
+- Supports redirection with `>`, `>>`, and `<` operators
+- Handles any number of pipes for command chaining
+- Combines redirection with pipes for complex command sequences
 
-\*\* To use Neonate, simply compile the code and run the resulting executable with the following command:
+### 🔹 Process Management Commands
 
-neonate -n <time_arg>
+#### `activities`
+- Lists all shell-spawned processes in lexicographic order
+- Shows command name, PID, and state (Running/Stopped)
+- Handles invalid processes gracefully (e.g., `sleeep &`)
 
-## signals
+#### `neonate`
+- Usage: `neonate -n <time_arg>`
+- Monitors newly created processes by examining `/proc` directory
+- Uses terminal attribute manipulation for real-time monitoring
 
-# Signal Handler
+#### `ping`
+- Usage: `ping <pid> <signal_number>`
+- Sends specified signal (0-31) to a given process
 
-1. The signal handler catches the following signals and performs the following actions:
+#### `iMan`
+- Usage: `iMan <command_name>`
+- Fetches man pages from http://man.he.net/ using sockets
+- Outputs documentation directly to terminal
 
-   1. SIGINT (Ctrl-C): Kills the foreground process and resets the foreground process ID to -1.
-   2. SIGTSTP (Ctrl-Z): Stops the foreground process, adds it to a list of background processes, and resets the
-   3. foreground process ID to -1.
-   4. SIGD (Ctrl-D): Logs out of the shell after killing all processes.
+##  Command Usage Guide
 
-# Ping Command
-
--> . The ping command sends a signal to a specified process. The command takes two arguments: the process ID and the signal number.
-
-# Usage
-
-To use the ping command, simply type:
-
-ping <pid> <signal_number>
-
-Replace <pid> with the process ID and <signal_number> with the signal number (0-31).
-
-## iman
-
- ## Description
-
-The iMan command fetches man pages from the internet using sockets and outputs them to the terminal (stdout). It uses the website http://man.he.net/ to retrieve the man pages.
-Usage
-
-Replace <command_name> with the name of the man page you want to fetch.
-
-# Directions for use
-
-1. hop
-   hop <path>
-2. reveal
-   reveal <flags> <path>
-3. proclore
-   proclore <pid>
-4. seek
-   seek <flags> <search> <target_directory>
-5. activities
-   activities
-6. ping
-   ping <pid> <signal_number>
-7. fg
-   fg <pid>
-8. bg
-   bg <pid>
-9. neonate
-   neonate -n [time_arg]
-10. iMan
-    iMan <command_name>
+1. `hop <path>` - Navigate directories
+2. `reveal <flags> <path>` - List files and directories
+3. `proclore <pid>` - Show process information
+4. `seek <flags> <search> <target_directory>` - Find files/directories
+5. `activities` - List running processes
+6. `ping <pid> <signal_number>` - Send signal to process
+7. `fg <pid>` - Move process to foreground
+8. `bg <pid>` - Resume background process
+9. `neonate -n <time_arg>` - Monitor new processes
+10. `iMan <command_name>` - Get online manual pages
