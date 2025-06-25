@@ -1,7 +1,7 @@
-# Custom Shell Project
+# Custom Shell Project (Course git repo link ; https://github.com/OSN-Monsoon-2024/mini-project-1-Vedp9984)
 
 ## Overview
-Mini Project: Custom Shell Development in C
+Mini Project: Custom Shell Development in C 
    # • Developed a Unix-like shell using C, implementing essential features to mimic standard shell behavior. 
    # • Dynamic Shell Prompt: Created a prompt displaying the current user, system name, and working directory, with support for relative paths. 
    # • Command Parsing: Implemented support for executing multiple commands using ; and &, handling random spaces and tabs in user input. 
