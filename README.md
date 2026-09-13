@@ -1,6 +1,6 @@
 #  Custom Shell - Mini Project 1
 
-> GitHub Repository: [OSN-Monsoon-2024/mini-project-1-Vedp9984](https://github.com/OSN-Monsoon-2024/mini-project-1-Vedp9984)
+
 
 ##  Overview
 
